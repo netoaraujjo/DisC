@@ -4,24 +4,24 @@
 #
 #
 
-function clear_screen()
-    run(is_unix()? `clear` : `cmd /c cls`)
+function read_separator()
+    display_banner()
+    print("   Informe o caractere separador: ")
+    separator = read(STDIN, Char);read(STDIN, Char)
+    return separator
 end
 
-function display_banner()
-    clear_screen()
 
-    banner = 
-    """
-        ___    _   ____    ___   
-       |   \\  | | |   _|  / __|  | Discretization and Codification Tool
-       | |\\ \\ | | |_ |_  | /     | Github: https://github.com/netoaraujjo/DisC
-       | |/ / | |  _|  | | \\__   |
-       |___/  |_| |____|  \\___|  | Version: 0.0.1
+function has_header()
+    display_banner()
+    print("   O arquivo possui cabeçalho? (y/n): ")
+    answer = read(STDIN, Char);read(STDIN, Char)
 
-    """
-
-    print(banner)
+    if answer == 'Y' || answer == 'y'
+        return true
+    else
+        return false
+    end
 end
 
 
@@ -46,9 +46,10 @@ end
 
 
 function discretization_menu()
-    discretization_options = [:ewd, :efd, :auto]
-
+    discretization_options = [:none, :ewd, :efd, :auto]
+    option = 0
     valid = true
+
     while true
 
         display_banner()
@@ -58,11 +59,12 @@ function discretization_menu()
            -----------------------------
               Método de Discretização
            -----------------------------
-           1 - Larguras Iguais (EWD)
-           2 - Frequências iguais (EFD)
-           3 - Automático
-           4 - Ajuda
-           5 - Sair
+           1 - Nenhum
+           2 - Larguras Iguais (EWD)
+           3 - Frequências iguais (EFD)
+           4 - Automático
+           5 - Ajuda
+           6 - Sair
 
         """
 
@@ -74,49 +76,77 @@ function discretization_menu()
 
         print("   Opção: ")
 
-        # option = read(STDIN, 1)[1]; read(STDIN, Char)
-        option = read(STDIN, Char)#; read(STDIN, Char)
-        option = Int(option) - 48
+        try
+            option = parse(Int, readline())
+        catch
+            valid = false
+            continue
+        end
 
-        if 1 <= option <= 3
+        if 1 <= option <= 4
             return discretization_options[option]
-        elseif option == 4
-            # exibe ajuda
         elseif option == 5
+            # exibe ajuda
+        elseif option == 6
             exit()
         else
             valid = false
         end
-
     end
 end
 
 
-function discretization_submenu()
-    valid = true
-    while true
-        display_banner()
-
-        
-
-        bins_number = 0
-
-    end
+function discretization_help()
+    # exibir ajuda para discretização
 end
 
 
 function codification_menu()
-    codification_menu = 
-    """
-       ---------------------------
-          Método de Codificação
-       ---------------------------
-       1 - Padrão
-       2 - Sair
-    """
-    print(codification_menu)
-    print("   Opção: ")
+    codification_options = [:none, :default]
+    option = 0
+    valid = true
 
-    opcao = read(STDIN, Char)
-    return opcao
+    while true
+        display_banner()
+
+        codification_menu = 
+        """
+           ---------------------------
+              Método de Codificação
+           ---------------------------
+           1 - Nenhum
+           2 - Padrão
+           3 - Ajuda
+           4 - Sair
+
+        """
+        print(codification_menu)
+
+        if !valid
+            println("   Opção inválida! Tente novamente.\n")
+        end
+
+        print("   Opção: ")
+
+        try
+            option = parse(Int, readline())
+        catch
+            valid = false
+            continue
+        end
+
+        if 1 <= option <= 2
+            return codification_options[option]
+        elseif option == 3
+            # exibe ajuda
+        elseif option == 4
+            exit()
+        else
+            valid = false
+        end
+    end
+end
+
+function codification_help()
+    # exibe ajuda para codificação
 end
