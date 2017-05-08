@@ -13,3 +13,10 @@ function read_file(path::String, separator::Char, header::Bool)
         exit()
     end
 end
+
+function write_file(data::DataFrame, path::String, separator::Char, header::Bool)
+    writetable(path, data, separator = separator, header = header)
+    if header
+        # salva arquivo com header
+    end
+end

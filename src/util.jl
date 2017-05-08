@@ -1,8 +1,5 @@
 
 
-
-
-
 function clear_screen()
     run(is_unix()? `clear` : `cmd /c cls`)
 end
@@ -16,7 +13,7 @@ function display_banner()
        |   \\  | | |   _|  / __|  | Discretization and Codification Tool
        | |\\ \\ | | |_ |_  | /     | Github: https://github.com/netoaraujjo/DisC
        | |/ / | |  _|  | | \\__   |
-       |___/  |_| |____|  \\___|  | Version: 0.0.1
+       |___/  |_| |____|  \\___|  | Version: 0.0.5 (alpha)
 
     """
 
