@@ -12,7 +12,7 @@ function __init__()
     nbins = 0
 
     if length(ARGS) == 1 
-        data_set = ARGS[1]
+        input_file = ARGS[1]
     else
         display_banner()
         println("   O data set deve ser informado!")
@@ -22,7 +22,7 @@ function __init__()
     separator = read_separator()
     header = has_header()
 
-    data = read_file(data_set, separator, header)
+    data = read_file(input_file, separator, header)
 
     discretization_method = discretization_menu()
 
@@ -50,7 +50,10 @@ function __init__()
     # codificação
 
     # salva resultado
-    write_file(data, "iris_result", separator, false)
+    output_file_name = split(basename(input_file), '.')[1]
+    output_file = string(dirname(input_file), "/", output_file_name, "_result")
+
+    write_file(data, output_file, separator, false)
 
 end
 
