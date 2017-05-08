@@ -15,8 +15,10 @@ function read_file(path::String, separator::Char, header::Bool)
 end
 
 function write_file(data::DataFrame, path::String, separator::Char, header::Bool)
-    writetable(path, data, separator = separator, header = header)
+    writetable(path, data, separator = separator, header = false)
     if header
-        # salva arquivo com header
+        out_file_handler = open(string(path, "_attrs"), "w")
+        write(out_file_handler, join(names(data), separator))
+        close(out_file_handler)
     end
 end

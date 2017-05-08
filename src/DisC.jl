@@ -53,7 +53,7 @@ function __init__()
     output_file_name = split(basename(input_file), '.')[1]
     output_file = string(dirname(input_file), "/", output_file_name, "_result")
 
-    write_file(data, output_file, separator, false)
+    write_file(data, output_file, separator, header)
 
 end
 
