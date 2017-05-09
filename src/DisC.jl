@@ -6,6 +6,7 @@ include("util.jl")
 include("menu.jl")
 include("file_manager.jl")
 include("discretization.jl")
+include("codification.jl")
 
 function __init__()
 
@@ -47,7 +48,23 @@ function __init__()
     data = discretize!(data, discretization_method, nbins)
     println(data)
 
+
+
+
+
+
+
+
     # codificação
+    data = data_encode!(data, codification_method)
+    println(data)
+
+
+
+
+
+
+
 
     # salva resultado
     output_file_name = split(basename(input_file), '.')[1]
