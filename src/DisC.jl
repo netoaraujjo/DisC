@@ -7,6 +7,7 @@ include("menu.jl")
 include("file_manager.jl")
 include("discretization.jl")
 include("codification.jl")
+include("data_analisys.jl")
 
 function __init__()
 
@@ -46,6 +47,11 @@ function __init__()
 
     display_banner()
     it = time()
+
+    # analise de dados
+    println("   Renderizando análise dos dados...")
+    plot_attributes_graph(string(dirname(input_file), "/", split(basename(input_file), '.')[1], "_"), data)
+
 
     # discretização
     println("   Realizando Discretização dos dados...")
