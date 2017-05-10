@@ -44,21 +44,31 @@ function __init__()
 
     # descrição dos dados
 
+    display_banner()
+    it = time()
+
     # discretização
+    println("   Realizando Discretização dos dados...")
     data = discretize!(data, discretization_method, nbins)
-    println(data)
+    # println(data)
 
 
     # codificação
+    println("   Realizando codificação dos dados...")
     data = data_encode!(data, codification_method)
-    println(data)
+    # println(data)
 
 
     # salva resultado
+    println("   Salvando resultados...")
     output_file_name = split(basename(input_file), '.')[1]
     output_file = string(dirname(input_file), "/", output_file_name, "_result")
 
     write_file(data, output_file, separator, header)
+
+    ft = time()
+
+    println("   Processo concluído em $(ft-it) segundos.")
 
 end
 

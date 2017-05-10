@@ -25,7 +25,7 @@ function discretize!(data::DataFrame, discretization_method::Symbol, nbins)
             disc = LinearDiscretizer(edges)
             disc_array = encode(disc, data[col])
             data[col] = DataArray(disc_array)
-            println(edges, " nbins: ", length(edges)-1)
+            println("   Atributo $col", " nbins: ", length(edges)-1)
         end
     end
 

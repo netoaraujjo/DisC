@@ -47,6 +47,7 @@ end
 function generate_code(arr_chars::Array, code_length::Int)
     code = ""
     for n = 1:code_length
+        # shufle
         code = string(code, arr_chars[rand(1:size(arr_chars, 1))])
     end
     return code
