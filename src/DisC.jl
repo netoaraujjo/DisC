@@ -21,6 +21,9 @@ function __init__()
         exit()
     end
 
+    input_file_dir = dirname(input_file)
+    input_file_name = String(split(basename(input_file), '.')[1]) # nome do arquivo sem extensao
+
     separator = read_separator()
     header = has_header()
 
@@ -50,7 +53,7 @@ function __init__()
 
     # analise de dados
     println("   Renderizando análise dos dados...")
-    plot_attributes_graph(string(dirname(input_file), "/", split(basename(input_file), '.')[1], "_"), data)
+    plot_attributes_graph(input_file_dir, input_file_name, data)
 
 
     # discretização
