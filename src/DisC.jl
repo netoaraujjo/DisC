@@ -49,21 +49,9 @@ function __init__()
     println(data)
 
 
-
-
-
-
-
-
     # codificação
     data = data_encode!(data, codification_method)
     println(data)
-
-
-
-
-
-
 
 
     # salva resultado

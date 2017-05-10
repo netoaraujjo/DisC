@@ -14,24 +14,11 @@ function data_encode!(data::DataFrame, encode_method::Symbol)
         # criar o array de caracteres
         arr_chars = [ch for ch in str_chars]
 
-        # criar um set para cada atributo/coluna
         for col = 1:size(data, 2)
-            data[col] = DataArray(labeler(arr_chars, data[col]))
+            if contains(string(eltype(data[col])), "Int")
+                data[col] = DataArray(labeler(arr_chars, data[col]))
+            end
         end
-
-        # mapear cada valor em um label
-
-        # criar um dataframe vazio com tipo string
-
-        # definir o tamanho dos rotulos
-
-        # inserir os rotulos no dataframe
-
-        # retornar os dados rotulados
-
-        # for col = 1:size(data, 2)
-        # end
-
 
         return data
     end

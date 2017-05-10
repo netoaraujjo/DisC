@@ -18,13 +18,15 @@ function discretize!(data::DataFrame, discretization_method::Symbol, nbins)
     cols = size(data, 2) # columns number
 
     for col = 1:cols
-        # tratar para apenas casos de atributos numericos de ponto flutuante
-        edges = binedges(discretization_algorithm, data[col])
-        disc = LinearDiscretizer(edges)
-        disc_array = encode(disc, data[col])
-        data[col] = DataArray(disc_array)
-        println(edges, " nbins: ", length(edges)-1)
-        # println(disc_array)
+        # data_col_type = eltype(data[col])
+        # if data_col_type == Float32 || data_col_type == Float64
+        if contains(string(eltype(data[col])), "Float")
+            edges = binedges(discretization_algorithm, data[col])
+            disc = LinearDiscretizer(edges)
+            disc_array = encode(disc, data[col])
+            data[col] = DataArray(disc_array)
+            println(edges, " nbins: ", length(edges)-1)
+        end
     end
 
     return data
